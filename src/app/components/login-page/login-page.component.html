@@ -10,12 +10,14 @@
             <!-- Email -->
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" name="email" id="name" class="form-control">
+              <input type="email" name="email" id="email" class="form-control" required
+              [(ngModel)]="email">
             </div>
             <!-- Password -->
             <div class="form-group">
               <label for="email">Password</label>
-              <input type="password" name="password" id="password" class="form-control">
+              <input type="password" name="password" id="password" class="form-control" required
+              [(ngModel)]="password">
             </div>
             <input type="submit" value="Enter" id="enter" name="enter" class="btn btn-block btn-lg btn-primary">
           </form>
