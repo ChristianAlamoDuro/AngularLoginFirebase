@@ -6,7 +6,7 @@
           <h1 class="text-center">
             Register
           </h1>
-          <form (submit)="addUser()">
+          <form #formRegister (submit)="addUser(formRegister)">
             <!-- Email -->
             <div class="form-group">
               <label for="email">Email</label>
