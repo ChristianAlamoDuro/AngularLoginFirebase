@@ -24,6 +24,7 @@ export class RegisterPageComponent implements OnInit {
     this.authService.registerUser(this.email, this.password)
       .then((res) => {
         this.formMessage("success", "Count Create", "Thanks for use our web page");
+        document.cookie = "userEmail="+this.email+"; max-age=3600; path=/";
         this.router.navigate(['/userLogged'])
       }).catch((err) => {
         console.log(err);

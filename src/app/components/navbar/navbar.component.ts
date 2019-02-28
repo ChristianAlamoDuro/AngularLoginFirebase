@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
+import { CookiesService } from "../../services/cookies.service";
+
 import { Router } from "@angular/router";
 
 
@@ -15,7 +17,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    public cookies: CookiesService
   ) { }
 
   ngOnInit() {
@@ -25,8 +28,6 @@ export class NavbarComponent implements OnInit {
           this.userLogin = true;
           this.username = auth.displayName;
           this.useremail = auth.email;
-          console.log(this.useremail);
-          
         }else{
           this.userLogin = false;
         }
@@ -36,6 +37,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.cookies.destroyUserCookies();
     this.router.navigate(['/home'])
   }
 

@@ -4,9 +4,9 @@
       <div class="card">
         <div class="card-body">
           <h1 class="text-center">
-            LOGIN
+            Login
           </h1>
-          <form method="POST" (submit)="loginUser()">
+          <form method="POST" #formLogin (submit)="loginUser(formLogin)">
             <!-- Email -->
             <div class="form-group">
               <label for="email">Email</label>

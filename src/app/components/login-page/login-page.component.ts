@@ -14,7 +14,7 @@ export class LoginPageComponent implements OnInit {
   public password:string;
 
   constructor(
-    public AuthService: AuthService,
+    public authService: AuthService,
     public router: Router
   ) { 
 
@@ -23,32 +23,33 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginUser(){
-    this.AuthService.loginUser(this.email, this.password)
+  /*
+    Realizamos un loggin si el login es correcto guardamos en una variable del servicio el email del usuario
+  */
+  loginUser(form){
+    this.authService.loginUser(this.email, this.password)
     .then(
       (res) =>{
-        this.formMessage("success","access granted");
+        this.formMessage("success","access granted",false,1500);
+        document.cookie = "userEmail="+this.email+"; max-age=3600; path=/";
         this.router.navigate(['/userLogged']);
       })
       .catch((err)=>{
         console.log(err);
-        this.formMessage("error","login failed");
-        this.router.navigate(['/login']);
+        this.formMessage("error","login failed",true,0);
+        form.reset();
       });
   }
 
-  formMessage( messageType, messageText) {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'center-left',
-      showConfirmButton: false,
-      timer: 3000
-    });
-    
-    Toast.fire({
+  formMessage( messageType, messageText, messageButton, messageTime) {
+    Swal.fire({
+      position: 'top-end',
       type: messageType,
-      title: messageText
+      title: messageText,
+      showConfirmButton: messageButton,
+      timer: messageTime
     })
   }
+  
 
 }

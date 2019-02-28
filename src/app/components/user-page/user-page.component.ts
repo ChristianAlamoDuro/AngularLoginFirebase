@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CookiesService } from "../../services/cookies.service";
+
+import { log } from 'util';
 
 @Component({
   selector: 'app-user-page',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPageComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  public userEmail: string;
+  constructor(
+    private cookieService: CookiesService
+  ) { 
+    this.userEmail = this.cookieService.getCookie("userEmail");
   }
+
+  ngOnInit() {    
+    console.log(this.cookieService.getCookie("userEmail"));
+    
+  }
+
 
 }

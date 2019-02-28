@@ -11,10 +11,8 @@ export class AuthService {
 
   constructor(
     public angularFireAuth: AngularFireAuth
-  ) { }
-
-
-
+  ) {
+   }
   /*
     Login de nuevos usuarios
   */
